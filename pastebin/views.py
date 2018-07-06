@@ -152,3 +152,6 @@ delete_view = SnippetViewSet.as_view({'delete': 'destroy'})
 class SnippetModelViewSet(ModelViewSet):
     queryset = Snippet.objects.all()
     serializer_class = SnippetModelSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)

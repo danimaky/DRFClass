@@ -16,11 +16,12 @@ class SnippetSerializer(serializers.Serializer):
 
 class SnippetModelSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
+    user = NameUserSerializer(read_only=True)
     title = serializers.CharField(required=False)
     code = serializers.CharField(required=False)
     lang = serializers.CharField(required=False)
 
     class Meta:
         model = Snippet
-        fields = ('id', 'title', 'code', 'lang',)
+        fields = ('id', 'title', 'code', 'lang', 'user')
 
