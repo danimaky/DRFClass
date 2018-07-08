@@ -8,6 +8,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 from rest_framework.decorators import api_view
 from rest_framework.generics import get_object_or_404
 from rest_framework.mixins import RetrieveModelMixin, ListModelMixin
@@ -150,6 +151,8 @@ update_view = SnippetViewSet.as_view({'put': 'update'})
 delete_view = SnippetViewSet.as_view({'delete': 'destroy'})
 
 class SnippetModelViewSet(ModelViewSet):
+    authentication_classes = (SessionAuthentication, BasicAuthentication, TokenAuthentication)
+    permission_classes = (IsAuthenticated,)
     queryset = Snippet.objects.all()
     serializer_class = SnippetModelSerializer
 
