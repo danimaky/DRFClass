@@ -117,3 +117,4 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication'
     )
 }
+EXPIRING_TOKEN_LIFESPAN = 1
